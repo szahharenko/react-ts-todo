@@ -1,0 +1,101 @@
+.todos {
+  display: flex;
+  flex-direction: column;
+  perspective: 500;
+  margin: 0;
+  padding: var(--base-spacing);
+  list-style-type: none;
+}
+.todos li {
+  padding: 0;
+  position: relative;
+  transition: all .5s;
+  padding: calc(var(--base-spacing) * 2);
+  border-radius: var(--base-spacing);
+  margin: var(--base-spacing) var(--base-spacing) 0;
+  display: flex;
+  justify-content: space-between;
+  background: var(--base-background);
+  overflow: hidden;
+  box-shadow: var(--base-shadow);
+}
+.todos li.complete {
+  color: var(--base-green);
+  box-shadow: none;
+}
+.todos li button {
+  cursor: pointer;
+  border: none;
+}
+.todos li input,
+.todos li button {
+  padding: calc(var(--base-spacing) * 2);
+  border-radius: 0.25em;  
+  display: flex;
+  align-items: center;
+}
+.todos li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: var(--base-light-green);
+  z-index: 0;
+}
+.todos li.complete::before {
+  animation: complete-task .2s linear;
+  animation-iteration-count: 1;
+  transform-origin: 0% 0%;
+  animation-fill-mode: forwards;
+}
+.todos li .details {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  z-index: 1;
+}
+.todos li .details input {
+  width: 100%;
+}
+.todos li .controls {
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+.todos li.complete .controls {
+  display: none;
+}
+.todos li .controls button {
+  background-color: var(--base-light-blue);
+  color: var(--base-blue);  
+  margin-left: var(--base-spacing);
+}
+.todos li .controls button.remove {
+  background-color: var(--base-light-yellow);
+  color: var(--base-yellow);  
+}
+.todos li .check {
+  box-sizing: border-box;
+  margin-right: calc(var(--base-spacing) * 2);
+  background-color: var(--base-gray);
+  box-shadow: var(--base-shadow);
+}
+.todos li .check svg {
+  opacity: 0.1;
+}
+.todos li .checked {
+  border-color: transparent;
+  box-shadow: none;
+  background-color: transparent;  
+}
+.todos li .checked svg{
+  opacity: 1;
+}
+
+@keyframes complete-task {
+  to {
+    width: 100%;
+  }
+}
