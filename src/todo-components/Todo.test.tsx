@@ -18,7 +18,7 @@ describe('<TodoApp />', () => {
       expect(component).toMatchSnapshot();
   });
 
-  it('be able to add NEW TODO',  async () => {
+  it('be able to ADD TODO',  async () => {
 
       render(<TodoApp initialTodos={initialTodos}/>);
 
@@ -34,7 +34,7 @@ describe('<TodoApp />', () => {
       expect(todoList.childNodes.length).toEqual(3);
   });
 
-  it('be able to add TOGGLE TODO',  async () => {
+  it('be able to TOGGLE TODO',  async () => {
     const singleTodo = initialTodos[0];
     render(<TodoApp initialTodos={[singleTodo]}/>);
 
@@ -47,7 +47,7 @@ describe('<TodoApp />', () => {
     expect(checkButton.className).toEqual('check ');    
   });  
 
-  it('be able to add REMOVE TODO',  async () => {
+  it('be able to REMOVE TODO',  async () => {
     const singleTodo = initialTodos[0];
     render(<TodoApp initialTodos={[singleTodo]}/>);
     const todoList = screen.getByRole('list');
@@ -59,7 +59,7 @@ describe('<TodoApp />', () => {
     expect(todoList.childNodes.length).toEqual(0);
   });
 
-  it('be able to add EDIT TODO',  async () => {  
+  it('be able to EDIT TODO',  async () => {  
     /* TODO */
   });
 
