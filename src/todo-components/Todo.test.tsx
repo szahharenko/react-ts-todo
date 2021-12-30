@@ -60,7 +60,38 @@ describe('<TodoApp />', () => {
   });
 
   it('be able to EDIT TODO',  async () => {  
-    /* TODO */
+    const singleTodo = initialTodos[0];
+    const newText = initialTodos[1].text;
+
+    render(<TodoApp initialTodos={[singleTodo]}/>);
+    
+    const todoListItem = screen.getByRole('listitem');
+    const editButton = screen.getByRole('button', { name: /Edit task/i });
+
+    //first check initial render todo item value
+    expect(todoListItem.textContent).toEqual(singleTodo.text);
+
+    //then we click edit button, check if edit button and input appeared in document
+    fireEvent.click(editButton);
+    const todoInput = screen.getByRole('textbox', { name: /Todo text/i });    
+    const saveButton = screen.getByRole('button', { name: /Save task/i });    
+    expect(todoInput).toBeInTheDocument();
+    expect(saveButton).toBeInTheDocument();
+
+    //them we change input value, and checking if it's changed
+    fireEvent.change(todoInput, {target: {value: newText}});
+    expect(todoInput).toHaveValue(newText);
+
+    //lastly we try to save new value
+    fireEvent.click(saveButton);
+
+    //edit button and input should disappeared from document
+    expect(saveButton).not.toBeInTheDocument();    
+    expect(todoInput).not.toBeInTheDocument();
+
+    //todo item value should be updated
+    //expect(todoListItem.textContent).toEqual(newText);
+
   });
 
   //etc

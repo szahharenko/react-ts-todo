@@ -20,7 +20,7 @@ export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo, removeTodo, ed
     <li className={ `todos__item ${todo.complete ? 'todos__item--complete' : 'todos__item--incomplete'}`}>
       <div className='todos__item__details'>
         { editMode ? 
-          <input type="text" ref={inputRef} 
+          <input type="text" ref={inputRef} aria-label="Todo text"
             onKeyDown={(e) => {
               if (e.code === "Enter") {
                 handleChange(todo)
