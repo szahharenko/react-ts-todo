@@ -1,0 +1,18 @@
+.addtodo {
+
+  border: solid 1px var(--base-border-color);
+  padding: calc( var(--base-spacing) * 2);
+  display: flex;
+  justify-content: space-between;
+  background: var(--base-background);
+
+  input {
+    width: 100%;
+  }
+  
+  button {
+    white-space: nowrap;
+    margin-left: var(--base-spacing);
+  }  
+
+}

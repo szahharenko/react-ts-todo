@@ -1,7 +1,7 @@
 import React from 'react';
 import { TodoListItem } from './TodoListItem';
 import { Todo, HandleTodo, EdidTodo} from './types/types';
-import './assets/todo-list.css';
+import './assets/todo-list.scss';
 
 interface Props {
   todos: Todo[];

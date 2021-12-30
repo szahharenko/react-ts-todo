@@ -40,11 +40,11 @@ describe('<TodoApp />', () => {
 
     const checkButton = screen.getByRole('button', { name: /Complete task/i });
         
-    expect(checkButton.className).toEqual('check ');
+    expect(checkButton.className).toEqual('');
     fireEvent.click(checkButton);
-    expect(checkButton.className).toEqual('check checked');
+    expect(checkButton.className).toEqual('checked');
     fireEvent.click(checkButton);
-    expect(checkButton.className).toEqual('check ');    
+    expect(checkButton.className).toEqual('');    
   });  
 
   it('be able to REMOVE TODO',  async () => {

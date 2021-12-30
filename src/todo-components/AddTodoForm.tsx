@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AddTodo } from './types/types';
-import './assets/todo-form.css';
+import './assets/todo-form.scss';
 
 interface Props {
   addTodo: AddTodo;
@@ -14,7 +14,7 @@ export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
     setText('');
   }
   return (
-    <form className='add-todo'>
+    <form className='addtodo'>
       <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
       <button type="submit" onClick={handleSubmit} >Add Todo</button>
     </form>

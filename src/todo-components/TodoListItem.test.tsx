@@ -17,12 +17,12 @@ describe('<TodoListItem />', () => {
     });
 
     it('should show COMPLETE item', () => {
-        expect(completedContainer.find('li.complete').length).toEqual(1);
+        expect(completedContainer.find('li.todos__item--complete').length).toEqual(1);
     });
 
     it('should NOT have COMPLETE item', () => {
         expect(incompleteContainer.find('li').length).toEqual(1);              
-        expect(incompleteContainer.find('.complete').length).toEqual(0);
+        expect(incompleteContainer.find('.todos__item--complete').length).toEqual(0);
     });
     
 });

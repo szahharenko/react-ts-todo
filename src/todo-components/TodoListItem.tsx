@@ -17,8 +17,8 @@ export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo, removeTodo, ed
     toggleEdit(false);
   }
   return (
-    <li className={ todo.complete ? 'complete' : 'incomplete' }>
-      <div className='details'>
+    <li className={ `todos__item ${todo.complete ? 'todos__item--complete' : 'todos__item--incomplete'}`}>
+      <div className='todos__item__details'>
         { editMode ? 
           <input type="text" ref={inputRef} 
             onKeyDown={(e) => {
@@ -30,7 +30,7 @@ export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo, removeTodo, ed
           : 
           <>
             <button 
-              className={`check ${todo.complete ? 'checked' : ''}`} 
+              className={`${todo.complete ? 'checked' : ''}`} 
               onClick={ () => { toggleTodo(todo) } }
               aria-label="Complete task">
               <FaCheck />
@@ -41,7 +41,7 @@ export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo, removeTodo, ed
           </>
         }
       </div>
-      <div className='controls'>
+      <div className='todos__item__controls'>
         { editMode ? 
           <>
               <button className='save'
