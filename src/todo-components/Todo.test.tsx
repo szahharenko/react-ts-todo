@@ -23,15 +23,14 @@ describe('<TodoApp />', () => {
       render(<TodoApp initialTodos={initialTodos}/>);
 
       const input = screen.getByRole('textbox');
-      const button = screen.getByRole('button', { name: /Add Todo/i });
-      const todoList = screen.getByRole('list');
-
       expect(input.getAttribute('value')).toEqual('');
+
       fireEvent.change(input, {target: {value: 'test'},});
       expect(input.getAttribute('value')).toEqual('test');
-      fireEvent.click(button);
+
+      fireEvent.click(screen.getByRole('button', { name: /Add Todo/i }));
       expect(input.getAttribute('value')).toEqual('');
-      expect(todoList.childNodes.length).toEqual(3);
+      expect(screen.getByRole('list').childNodes.length).toEqual(initialTodos.length + 1);
   });
 
   it('be able to TOGGLE TODO',  async () => {
@@ -39,10 +38,11 @@ describe('<TodoApp />', () => {
     render(<TodoApp initialTodos={[singleTodo]}/>);
 
     const checkButton = screen.getByRole('button', { name: /Complete task/i });
-        
     expect(checkButton.className).toEqual('');
+
     fireEvent.click(checkButton);
     expect(checkButton.className).toEqual('checked');
+    
     fireEvent.click(checkButton);
     expect(checkButton.className).toEqual('');    
   });  
@@ -65,14 +65,13 @@ describe('<TodoApp />', () => {
 
     render(<TodoApp initialTodos={[singleTodo]}/>);
     
-    const todoListItem = screen.getByRole('listitem');
-    const editButton = screen.getByRole('button', { name: /Edit task/i });
-
     //first check initial render todo item value
-    expect(todoListItem.textContent).toEqual(singleTodo.text);
+    expect(screen.getByRole('listitem').textContent).toEqual(singleTodo.text);
 
     //then we click edit button, check if edit button and input appeared in document
+    const editButton = screen.getByRole('button', { name: /Edit task/i });    
     fireEvent.click(editButton);
+
     const todoInput = screen.getByRole('textbox', { name: /Todo text/i });    
     const saveButton = screen.getByRole('button', { name: /Save task/i });    
     expect(todoInput).toBeInTheDocument();
@@ -90,10 +89,8 @@ describe('<TodoApp />', () => {
     expect(todoInput).not.toBeInTheDocument();
 
     //todo item value should be updated
-    //expect(todoListItem.textContent).toEqual(newText);
+    expect(screen.getByRole('listitem').textContent).toEqual(newText);
 
   });
-
-  //etc
   
 })
